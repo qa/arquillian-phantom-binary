@@ -1,0 +1,148 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Parent -->
+    <parent>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-parent</artifactId>
+        <version>9</version>
+        <relativePath />
+    </parent>
+
+    <groupId>org.jboss.phantomjs</groupId>
+    <artifactId>phantomjs-binary</artifactId>
+    <version>1.7.0</version>
+    <packaging>jar</packaging>
+
+    <name>phantomjs-binary</name>
+
+    <properties>
+        <phantomjs.version>1.7.0</phantomjs.version>
+        <phantomjs.url></phantomjs.url>
+        <target.os.family></target.os.family>
+        <platform.classifier>${target.os.family}</platform.classifier>
+        <linux.arch></linux.arch>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <classifier>${platform.classifier}</classifier>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>${resources.directory}</directory>
+            </resource>
+        </resources>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>windows</id>
+            <properties>
+                <target.os.family>windows</target.os.family>
+                <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-windows.zip</phantomjs.url>
+                <resources.directory>target/phantomjs-${phantomjs.version}-windows</resources.directory>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target name="download-phantomjs">
+                                        <get src="${phantomjs.url}" dest="target/phantomjs.zip" verbose="on" skipexisting="true" />
+                                        <unzip src="target/phantomjs.zip" dest="target"/>
+                                        <exec executable="sha1sum" output="${resources.directory}/phantomjs.exe.sha1" >
+                                            <arg value="${resources.directory}/phantomjs.exe" />
+                                        </exec>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>unix</id>
+            <properties>
+                <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-linux-${linux.arch}.tar.bz2</phantomjs.url>
+                <resources.directory>target/phantomjs-${phantomjs.version}-linux-${linux.arch}/bin</resources.directory>
+                <target.os.family>unix</target.os.family>
+                <platform.classifier>${target.os.family}_${target.os.arch}</platform.classifier>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target name="download-phantomjs">
+                                        <get src="${phantomjs.url}" dest="target/phantomjs.tar.bz2" verbose="on" skipexisting="true" />
+                                        <bunzip2 src="target/phantomjs.tar.bz2" dest="target/phantomjs.tar" />
+                                        <untar src="target/phantomjs.tar" dest="target" />
+                                        <exec executable="sha1sum" output="${resources.directory}/phantomjs.sha1" >
+                                            <arg value="${resources.directory}/phantomjs" />
+                                        </exec>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>mac</id>
+            <properties>
+                <target.os.family>mac</target.os.family>
+                <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-macosx.zip</phantomjs.url>
+                <resources.directory>target/phantomjs-${phantomjs.version}-macosx/bin</resources.directory>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target name="download-phantomjs">
+                                        <get src="${phantomjs.url}" dest="target/phantomjs.zip" verbose="on" skipexisting="true" />
+                                        <unzip src="target/phantomjs.zip" dest="target"/>
+                                        <exec executable="sha1sum" output="${resources.directory}/phantomjs.sha1" >
+                                            <arg value="${resources.directory}/phantomjs" />
+                                        </exec>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
