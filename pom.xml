@@ -6,19 +6,19 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>9</version>
+        <version>10</version>
         <relativePath />
     </parent>
 
     <groupId>org.jboss.phantomjs</groupId>
     <artifactId>phantomjs-binary</artifactId>
-    <version>1.7.0</version>
+    <version>1.8.0</version>
     <packaging>jar</packaging>
 
     <name>phantomjs-binary</name>
 
     <properties>
-        <phantomjs.version>1.7.0</phantomjs.version>
+        <phantomjs.version>1.8.0</phantomjs.version>
         <phantomjs.url></phantomjs.url>
         <target.os.family></target.os.family>
         <platform.classifier>${target.os.family}</platform.classifier>
