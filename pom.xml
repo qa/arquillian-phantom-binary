@@ -10,12 +10,30 @@
         <relativePath />
     </parent>
 
-    <groupId>org.jboss.phantomjs</groupId>
+    <groupId>org.jboss.arquillian.selenium</groupId>
     <artifactId>phantomjs-binary</artifactId>
     <version>1.8.0</version>
     <packaging>jar</packaging>
 
-    <name>phantomjs-binary</name>
+    <name>Binary for PhantomJS</name>
+
+    <description>
+        This project contains a binary sitable for the given OS family and architecture.
+    </description>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Jan Papousek</name>
+            <email>jpapouse@redhat.com</email>
+        </developer>
+    </developers>
 
     <properties>
         <phantomjs.version>1.8.0</phantomjs.version>
@@ -79,7 +97,7 @@
             </build>
         </profile>
         <profile>
-            <id>unix</id>
+            <id>linux</id>
             <properties>
                 <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-linux-${linux.arch}.tar.bz2</phantomjs.url>
                 <resources.directory>target/phantomjs-${phantomjs.version}-linux-${linux.arch}/bin</resources.directory>
