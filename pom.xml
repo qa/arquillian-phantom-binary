@@ -10,8 +10,8 @@
         <relativePath />
     </parent>
 
-    <groupId>org.jboss.arquillian.selenium</groupId>
-    <artifactId>phantomjs-binary</artifactId>
+    <groupId>org.jboss.arquillian.extension</groupId>
+    <artifactId>arquillian-phantom-binary</artifactId>
     <version>1.8.0</version>
     <packaging>jar</packaging>
 
@@ -48,6 +48,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-source-plugin</artifactId>
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>jar</goal>
+                  </goals>
+                </execution>
+              </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
