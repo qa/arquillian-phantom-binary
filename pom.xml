@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Parent -->
@@ -24,8 +24,8 @@
 
     <licenses>
         <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <name>The BSD 3-Clause License</name>
+            <url>http://opensource.org/licenses/BSD-3-Clause</url>
         </license>
     </licenses>
 
@@ -51,15 +51,11 @@
                 <artifactId>maven-resources-plugin</artifactId>
             </plugin>
             <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-source-plugin</artifactId>
-              <executions>
-                <execution>
-                  <goals>
-                    <goal>jar</goal>
-                  </goals>
-                </execution>
-              </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <configuration>
+                    <skipSource>true</skipSource>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -95,9 +91,9 @@
                                 </goals>
                                 <configuration>
                                     <target name="download-phantomjs">
-                                        <get src="${phantomjs.url}" dest="target/phantomjs.zip" verbose="on" skipexisting="true" />
-                                        <unzip src="target/phantomjs.zip" dest="target"/>
-                                        <exec executable="sha1sum" output="${resources.directory}/phantomjs.exe.sha1" >
+                                        <get src="${phantomjs.url}" dest="target/phantomjs-windows.zip" verbose="on" skipexisting="true" />
+                                        <unzip src="target/phantomjs-windows.zip" dest="target" />
+                                        <exec executable="sha1sum" output="${resources.directory}/phantomjs.exe.sha1">
                                             <arg value="${resources.directory}/phantomjs.exe" />
                                         </exec>
                                     </target>
@@ -112,7 +108,7 @@
             <id>linux</id>
             <properties>
                 <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-linux-${linux.arch}.tar.bz2</phantomjs.url>
-                <resources.directory>target/phantomjs-${phantomjs.version}-linux-${linux.arch}/bin</resources.directory>
+                <resources.directory>target/phantomjs-${phantomjs.version}-linux-${linux.arch}</resources.directory>
                 <target.os.family>unix</target.os.family>
                 <platform.classifier>${target.os.family}_${target.os.arch}</platform.classifier>
             </properties>
@@ -128,10 +124,11 @@
                                 </goals>
                                 <configuration>
                                     <target name="download-phantomjs">
-                                        <get src="${phantomjs.url}" dest="target/phantomjs.tar.bz2" verbose="on" skipexisting="true" />
-                                        <bunzip2 src="target/phantomjs.tar.bz2" dest="target/phantomjs.tar" />
-                                        <untar src="target/phantomjs.tar" dest="target" />
-                                        <exec executable="sha1sum" output="${resources.directory}/phantomjs.sha1" >
+                                        <get src="${phantomjs.url}" dest="target/phantomjs-linux-${linux.arch}.tar.bz2" verbose="on"
+                                            skipexisting="true" />
+                                        <bunzip2 src="target/phantomjs-linux-${linux.arch}.tar.bz2" dest="target/phantomjs-linux-${linux.arch}.tar" />
+                                        <untar src="target/phantomjs-linux-${linux.arch}.tar" dest="target" />
+                                        <exec executable="sha1sum" output="${resources.directory}/bin/phantomjs.sha1">
                                             <arg value="${resources.directory}/phantomjs" />
                                         </exec>
                                     </target>
@@ -147,7 +144,7 @@
             <properties>
                 <target.os.family>mac</target.os.family>
                 <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-macosx.zip</phantomjs.url>
-                <resources.directory>target/phantomjs-${phantomjs.version}-macosx/bin</resources.directory>
+                <resources.directory>target/phantomjs-${phantomjs.version}-macosx</resources.directory>
             </properties>
             <build>
                 <plugins>
@@ -161,9 +158,9 @@
                                 </goals>
                                 <configuration>
                                     <target name="download-phantomjs">
-                                        <get src="${phantomjs.url}" dest="target/phantomjs.zip" verbose="on" skipexisting="true" />
-                                        <unzip src="target/phantomjs.zip" dest="target"/>
-                                        <exec executable="sha1sum" output="${resources.directory}/phantomjs.sha1" >
+                                        <get src="${phantomjs.url}" dest="target/phantomjs-mac.zip" verbose="on" skipexisting="true" />
+                                        <unzip src="target/phantomjs-mac.zip" dest="target" />
+                                        <exec executable="sha1sum" output="${resources.directory}/bin/phantomjs.sha1">
                                             <arg value="${resources.directory}/phantomjs" />
                                         </exec>
                                     </target>
