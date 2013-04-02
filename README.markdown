@@ -1,6 +1,8 @@
-# Binary for PhantomJS
+# Arquillian Phantom Binary
 
-This project contains a binary of [PhantomJS](http://phantomjs.org/) suitable for the given OS family and architecture.
+This project contains a binary of [PhantomJS](http://phantomjs.org/) for distribution as Maven artifact suitable for each supported OS family and architecture.
+
+The distribution in a Maven repository allows to run PhantomJS projects without a need to have the PhantomJS executable installed locally. It also helps to manage dependency on particular PhantomJS version.
 
 ## Usage
 
@@ -8,7 +10,7 @@ This project contains a binary of [PhantomJS](http://phantomjs.org/) suitable fo
 Add following snippet to your project's POM:
 
     <properties>
-        <version.phantomjs>1.8.0</version.phantomjs>
+        <version.phantomjs>1.9.0</version.phantomjs>
     </properties>
 
     <profiles>
@@ -21,8 +23,8 @@ Add following snippet to your project's POM:
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>org.jboss.phantomjs</groupId>
-                    <artifactId>phantomjs-binary</artifactId>
+                    <groupId>org.jboss.arquillian.extension</groupId>
+                    <artifactId>arquillian-phantom-binary</artifactId>
                     <version>${version.phantomjs}</version>
                     <classifier>unix_${os.arch}</classifier>
                 </dependency>
@@ -37,8 +39,8 @@ Add following snippet to your project's POM:
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>org.jboss.phantomjs</groupId>
-                    <artifactId>phantomjs-binary</artifactId>
+                    <groupId>org.jboss.arquillian.extension</groupId>
+                    <artifactId>arquillian-phantom-binary</artifactId>
                     <version>${version.phantomjs}</version>
                     <classifier>mac</classifier>
                 </dependency>
@@ -53,8 +55,8 @@ Add following snippet to your project's POM:
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>org.jboss.phantomjs</groupId>
-                    <artifactId>phantomjs-binary</artifactId>
+                    <groupId>org.jboss.arquillian.extension</groupId>
+                    <artifactId>arquillian-phantom-binary</artifactId>
                     <version>${version.phantomjs}</version>
                     <classifier>windows</classifier>
                 </dependency>
