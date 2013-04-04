@@ -79,6 +79,8 @@ There is a different binary for 64 architecture:
 and 32bit one:
 
     mvn clean install -Plinux -Dtarget.os.arch=x86 -Dlinux.arch=i686
+    mvn clean install -Plinux -Dtarget.os.arch=i386 -Dlinux.arch=i686
+
 
 ### Windows
 
