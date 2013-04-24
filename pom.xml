@@ -93,9 +93,6 @@
                                     <target name="download-phantomjs">
                                         <get src="${phantomjs.url}" dest="target/phantomjs-windows.zip" verbose="on" skipexisting="true" />
                                         <unzip src="target/phantomjs-windows.zip" dest="target" />
-                                        <exec executable="sha1sum" output="${resources.directory}/phantomjs.exe.sha1">
-                                            <arg value="${resources.directory}/phantomjs.exe" />
-                                        </exec>
                                     </target>
                                 </configuration>
                             </execution>
@@ -105,12 +102,11 @@
             </build>
         </profile>
         <profile>
-            <id>linux</id>
+            <id>linux-32</id>
             <properties>
-                <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-linux-${linux.arch}.tar.bz2</phantomjs.url>
-                <resources.directory>target/phantomjs-${phantomjs.version}-linux-${linux.arch}</resources.directory>
-                <target.os.family>unix</target.os.family>
-                <platform.classifier>${target.os.family}_${target.os.arch}</platform.classifier>
+                <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-linux-i686.tar.bz2</phantomjs.url>
+                <resources.directory>target/phantomjs-${phantomjs.version}-linux-i686</resources.directory>
+                <platform.classifier>linux-32</platform.classifier>
             </properties>
             <build>
                 <plugins>
@@ -124,13 +120,10 @@
                                 </goals>
                                 <configuration>
                                     <target name="download-phantomjs">
-                                        <get src="${phantomjs.url}" dest="target/phantomjs-linux-${linux.arch}.tar.bz2" verbose="on"
+                                        <get src="${phantomjs.url}" dest="target/phantomjs-linux-32.tar.bz2" verbose="on"
                                             skipexisting="true" />
-                                        <bunzip2 src="target/phantomjs-linux-${linux.arch}.tar.bz2" dest="target/phantomjs-linux-${linux.arch}.tar" />
-                                        <untar src="target/phantomjs-linux-${linux.arch}.tar" dest="target" />
-                                        <exec executable="sha1sum" output="${resources.directory}/bin/phantomjs.sha1">
-                                            <arg value="${resources.directory}/phantomjs" />
-                                        </exec>
+                                        <bunzip2 src="target/phantomjs-linux-32.tar.bz2" dest="target/phantomjs-linux-32.tar" />
+                                        <untar src="target/phantomjs-linux-32.tar" dest="target" />
                                     </target>
                                 </configuration>
                             </execution>
@@ -140,9 +133,40 @@
             </build>
         </profile>
         <profile>
-            <id>mac</id>
+            <id>linux-64</id>
             <properties>
-                <target.os.family>mac</target.os.family>
+                <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2</phantomjs.url>
+                <resources.directory>target/phantomjs-${phantomjs.version}-linux-x86_64</resources.directory>
+                <platform.classifier>linux-64</platform.classifier>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target name="download-phantomjs">
+                                        <get src="${phantomjs.url}" dest="target/phantomjs-linux-64.tar.bz2" verbose="on"
+                                            skipexisting="true" />
+                                        <bunzip2 src="target/phantomjs-linux-64.tar.bz2" dest="target/phantomjs-linux-64.tar" />
+                                        <untar src="target/phantomjs-linux-64.tar" dest="target" />
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>macosx</id>
+            <properties>
+                <target.os.family>macosx</target.os.family>
                 <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-macosx.zip</phantomjs.url>
                 <resources.directory>target/phantomjs-${phantomjs.version}-macosx</resources.directory>
             </properties>
@@ -160,9 +184,6 @@
                                     <target name="download-phantomjs">
                                         <get src="${phantomjs.url}" dest="target/phantomjs-mac.zip" verbose="on" skipexisting="true" />
                                         <unzip src="target/phantomjs-mac.zip" dest="target" />
-                                        <exec executable="sha1sum" output="${resources.directory}/bin/phantomjs.sha1">
-                                            <arg value="${resources.directory}/phantomjs" />
-                                        </exec>
                                     </target>
                                 </configuration>
                             </execution>
