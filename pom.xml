@@ -12,7 +12,7 @@
 
     <groupId>org.jboss.arquillian.extension</groupId>
     <artifactId>arquillian-phantom-binary</artifactId>
-    <version>1.9.2</version>
+    <version>1.9.6</version>
     <packaging>jar</packaging>
 
     <name>Binary for PhantomJS distributed in Maven repository</name>
@@ -37,11 +37,12 @@
     </developers>
 
     <properties>
-        <phantomjs.version>1.9.2</phantomjs.version>
+        <phantomjs.version>1.9.6</phantomjs.version>
         <phantomjs.url></phantomjs.url>
         <target.os.family></target.os.family>
         <platform.classifier>${target.os.family}</platform.classifier>
         <linux.arch></linux.arch>
+        <download.page>http://cdn.bitbucket.org/ariya/phantomjs/downloads</download.page>
     </properties>
 
     <build>
@@ -76,7 +77,7 @@
             <id>windows</id>
             <properties>
                 <target.os.family>windows</target.os.family>
-                <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-windows.zip</phantomjs.url>
+                <phantomjs.url>${download.page}/phantomjs-${phantomjs.version}-windows.zip</phantomjs.url>
                 <resources.directory>target/phantomjs-${phantomjs.version}-windows</resources.directory>
             </properties>
             <build>
@@ -104,7 +105,7 @@
         <profile>
             <id>linux-32</id>
             <properties>
-                <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-linux-i686.tar.bz2</phantomjs.url>
+                <phantomjs.url>${download.page}/phantomjs-${phantomjs.version}-linux-i686.tar.bz2</phantomjs.url>
                 <resources.directory>target/phantomjs-${phantomjs.version}-linux-i686</resources.directory>
                 <platform.classifier>linux-32</platform.classifier>
             </properties>
@@ -135,7 +136,7 @@
         <profile>
             <id>linux-64</id>
             <properties>
-                <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2</phantomjs.url>
+                <phantomjs.url>${download.page}/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2</phantomjs.url>
                 <resources.directory>target/phantomjs-${phantomjs.version}-linux-x86_64</resources.directory>
                 <platform.classifier>linux-64</platform.classifier>
             </properties>
@@ -167,7 +168,7 @@
             <id>macosx</id>
             <properties>
                 <target.os.family>macosx</target.os.family>
-                <phantomjs.url>http://phantomjs.googlecode.com/files/phantomjs-${phantomjs.version}-macosx.zip</phantomjs.url>
+                <phantomjs.url>${download.page}/phantomjs-${phantomjs.version}-macosx.zip</phantomjs.url>
                 <resources.directory>target/phantomjs-${phantomjs.version}-macosx</resources.directory>
             </properties>
             <build>
