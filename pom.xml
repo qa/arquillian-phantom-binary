@@ -12,7 +12,7 @@
 
     <groupId>org.jboss.arquillian.extension</groupId>
     <artifactId>arquillian-phantom-binary</artifactId>
-    <version>1.9.7</version>
+    <version>1.9.8</version>
     <packaging>jar</packaging>
 
     <name>Binary for PhantomJS distributed in Maven repository</name>
