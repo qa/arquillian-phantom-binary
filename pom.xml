@@ -42,7 +42,7 @@
         <target.os.family></target.os.family>
         <platform.classifier>${target.os.family}</platform.classifier>
         <linux.arch></linux.arch>
-        <download.page>http://cdn.bitbucket.org/ariya/phantomjs/downloads</download.page>
+        <download.page>http://bitbucket.org/ariya/phantomjs/downloads</download.page>
     </properties>
 
     <build>
