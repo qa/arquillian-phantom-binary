@@ -9,6 +9,14 @@ The distribution in a Maven repository allows to run PhantomJS projects without 
 The general schema for installing the project for the wanted OS is:
 
     mvn clean install -P<windows|macosx|linux-32|linux-64>
+    
+    
+To install binaries for all platforms:
+    
+    mvn clean install -Pwindows
+    mvn clean install -Pmacosx
+    mvn clean install -Plinux-32
+    mvn clean install -Plinux-64
 
 ## Deploying
 
