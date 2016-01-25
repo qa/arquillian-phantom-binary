@@ -12,7 +12,7 @@
 
     <groupId>org.jboss.arquillian.extension</groupId>
     <artifactId>arquillian-phantom-binary</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.1</version>
     <packaging>jar</packaging>
 
     <name>Binary for PhantomJS distributed in Maven repository</name>
@@ -120,14 +120,13 @@
                                     <goal>run</goal>
                                 </goals>
                                 <configuration>
-                                    <tasks>
-                                        <echo>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</echo>
-                                        <echo>!!! There is no PhantomJS 2.0.0 binary for Linux yet !!!</echo>
-                                        <echo>!!! For more information see:                        !!!</echo>
-                                        <echo>!!! http://phantomjs.org/download.html   or:         !!!</echo>
-                                        <echo>!!! https://github.com/ariya/phantomjs/issues/12948  !!!</echo>
-                                        <echo>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</echo>
-                                    </tasks>
+                                    <target name="download-phantomjs">
+                                        <get src="${phantomjs.url}" dest="target/phantomjs-linux-32.tar.bz2"
+                                             verbose="on" skipexisting="true"/>
+                                        <bunzip2 src="target/phantomjs-linux-32.tar.bz2"
+                                                 dest="target/phantomjs-linux-32.tar"/>
+                                        <untar src="target/phantomjs-linux-32.tar" dest="target"/>
+                                    </target>
                                 </configuration>
                             </execution>
                         </executions>
@@ -153,14 +152,13 @@
                                     <goal>run</goal>
                                 </goals>
                                 <configuration>
-                                    <tasks>
-                                        <echo>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</echo>
-                                        <echo>!!! There is no PhantomJS 2.0.0 binary for Linux yet !!!</echo>
-                                        <echo>!!! For more information see:                        !!!</echo>
-                                        <echo>!!! http://phantomjs.org/download.html   or:         !!!</echo>
-                                        <echo>!!! https://github.com/ariya/phantomjs/issues/12948  !!!</echo>
-                                        <echo>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</echo>
-                                    </tasks>
+                                    <target name="download-phantomjs">
+                                        <get src="${phantomjs.url}" dest="target/phantomjs-linux-64.tar.bz2"
+                                             verbose="on" skipexisting="true"/>
+                                        <bunzip2 src="target/phantomjs-linux-64.tar.bz2"
+                                                 dest="target/phantomjs-linux-64.tar"/>
+                                        <untar src="target/phantomjs-linux-64.tar" dest="target"/>
+                                    </target>
                                 </configuration>
                             </execution>
                         </executions>
